@@ -1,29 +1,39 @@
-import React, { useState } from 'react'
-import { Center, Container, Flex, Spacer, Stat, StatGroup, StatLabel, StatNumber } from '@chakra-ui/react'
+import React from 'react'
+import { Container, Flex, Spacer } from '@chakra-ui/react'
 import Deck from '../deck/deck'
+import CardContainer from '../cards/card-container'
+import Notify from '../notify/notify'
+import Stats from '../stats/stats'
+import logger from 'debug'
 
+const log = logger('playarea')
 
-function PlayArea ({ children }) {
+function PlayArea ({ gamestate, notifyNext, notifyPlayerMoved }) {
+  const {
+    computerCardsOnBoard,
+    computerDeck,
+    playerCardsOnBoard,
+    playerDeck,
+    roundWinner
+  } = gamestate
 
+  log('The winner is: ', roundWinner)
+  
   return (
     <Container padding='2.5em' pos='fixed' bg='blue.400' minW='full' minH='full'>
       <Flex margin='2.5em 0'>
-        <Deck player={{ name: 'Computer', type: 'c' }} />
+        <Deck player={{ name: 'Computer' }} />
         <Spacer />
-        <Deck player={{ name: 'Player', type: 'p' }} />
+        <CardContainer card={computerCardsOnBoard[0]} />
+        <Spacer />
+        <CardContainer card={playerCardsOnBoard[0]} />
+        <Spacer />
+        <Deck player={{ name: 'Player' }} notifyPlayerMoved={notifyPlayerMoved} />
       </Flex>
-      <Center>
-        <StatGroup pos='absolute' bottom='10em' borderRadius='10px' boxShadow='md' borderColor='blue.900' width='33%' bg='white' padding='0.6em'>
-          <Stat>
-            <StatLabel>Player Deck Size</StatLabel>
-            <StatNumber>345,670</StatNumber>
-          </Stat>
-          <Stat>
-            <StatLabel>Computer Deck Size</StatLabel>
-            <StatNumber>45</StatNumber>
-          </Stat>
-        </StatGroup>
-      </Center>
+
+      { roundWinner ? <Notify winner={roundWinner} notifyNext={notifyNext} /> : null }
+
+      <Stats pLength={playerDeck.length} cLength={computerDeck.length} />
     </Container>
   )
 }

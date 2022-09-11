@@ -101,7 +101,7 @@ function shuffleDeck (deck) {
   return deck
 }
 
-function createDeck () {
+function CreateDeck () {
   let deck = []
 
   suits.forEach(suit => {
@@ -117,4 +117,4 @@ function createDeck () {
   return shuffleDeck(deck)
 }
 
-export default createDeck()
+export default CreateDeck
