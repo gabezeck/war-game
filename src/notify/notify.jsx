@@ -1,25 +1,33 @@
 import React from 'react'
-import { Box, Button, Center, Heading, Highlight } from '@chakra-ui/react'
+import { Box, Center, Heading, Highlight } from '@chakra-ui/react'
+import { winner } from '../enums'
 
-function Notify({ winner, notifyNext = () => {} }) {
+function Notify({ winner: current }) {
   return (
-    <Center>
-      <Box>
-        <Heading marginBottom='0.5em' lineHeight='tall'>
-          <Highlight
-            query={[winner]}
-            styles={{ px: '2', py: '1', rounded: 'full', bg: 'green.200' }}
-          >
-            {`${winner} has won the round!`}
-          </Highlight>
-        </Heading>
-        <Center>
-          <Button colorScheme='telegram' variant='solid' onClick={notifyNext}>
-            Next Round
-          </Button>
+    <>
+      {
+        current !== winner.TIED
+        ? <Center>
+            <Box>
+              <Heading color='white' marginBottom='0.5em' lineHeight='tall'>
+                <Highlight
+                  query={[current]}
+                  styles={{ px: '5', py: '1', rounded: 'full', bg: 'green.200', color: 'white' }}
+                >
+                  {`${current} has won the round!`}
+                </Highlight>
+              </Heading>
+            </Box>
+          </Center>
+        : <Center>
+          <Box>
+            <Heading color='white' marginBottom='0.5em' lineHeight='tall'>
+              Round is tied. Prepare for War!
+            </Heading>
+          </Box>
         </Center>
-      </Box>
-    </Center>
+      }
+    </>
   )
 }
 

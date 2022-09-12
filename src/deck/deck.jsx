@@ -1,10 +1,9 @@
 import React from 'react'
 import { Box, Text } from '@chakra-ui/react'
 
-function Deck ({ player, notifyPlayerMoved }) {
-  const style = player.type === 'p' ? { cursor: 'pointer' } : {}
+function Deck ({ player, height, width, position, left, right }) {
   return (
-    <Box sx={style}>
+    <Box height={height} width={width} position={position} left={left} right={right}>
       <Text as='h5' color='whiteAlpha.900'>{player.name}</Text>
       <Box 
         bgImage='url("/card-back.svg")' 
@@ -15,7 +14,6 @@ function Deck ({ player, notifyPlayerMoved }) {
         boxShadow='md' 
         height='333px' 
         width='234px'
-        onClick={notifyPlayerMoved}
       />
     </Box>
   )
