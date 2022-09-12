@@ -79,6 +79,9 @@ function GameManager () {
         const pCard = pDeck.shift()
         const cCard = cDeck.shift()
         
+        log('The player\'s card is: ', pCard)
+        log('The computer\'s card is: ', cCard)
+
         const pCardsOnBoard = [pCard]
         const cCardsOnBoard = [cCard]
         
@@ -112,8 +115,11 @@ function GameManager () {
       const pFinal = pDeck.shift()
       const cFinal = cDeck.shift()
 
-      log('The player war stack is: ', pStack)
+      log('The player\'s war stack is: ', pStack)
       log('The player\'s final war card is: ', pFinal)
+
+      log('The computer\'s war stack is: ', cStack)
+      log('The computers\'s final war card is: ', cFinal)
 
       if (pFinal.value > cFinal.value) roundWinner = winner.PLAYER
       if (pFinal.value < cFinal.value) roundWinner = winner.COMPUTER

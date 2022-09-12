@@ -32,9 +32,9 @@ function War({ gamestate }) {
   return (
     <Box width='85%'>
       <Flex>
-        {PlayerStack}
-        <Spacer />
         {ComputerStack}
+        <Spacer />
+        {PlayerStack}
       </Flex>
     </Box>
   )
