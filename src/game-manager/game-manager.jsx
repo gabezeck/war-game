@@ -6,18 +6,23 @@ import PlayArea from '../playarea/playarea'
 
 const log = logger('gamemanager')
 
-const initialState = {
-  computerDeck: cards(),
-  playerDeck: cards(),
-  playerCardsOnBoard: [],
-  computerCardsOnBoard: [],
-  roundWinner: null,
-  phase: phase.ROUND_START,
-  gameWinner: null
+const getInitialState = () => {
+  const deck = cards()
+  const mid = deck.length/2
+
+  return {
+    computerDeck: deck.slice(0, mid),
+    playerDeck: deck.slice(mid),
+    playerCardsOnBoard: [],
+    computerCardsOnBoard: [],
+    roundWinner: null,
+    phase: phase.ROUND_START,
+    gameWinner: null
+  }
 }
 
 function GameManager () {
-  const [gamestate, setGamestate] = useState(initialState)
+  const [gamestate, setGamestate] = useState(getInitialState())
 
   const notifyNext = () => {
     const { phase: current } = gamestate

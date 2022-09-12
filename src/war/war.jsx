@@ -13,12 +13,12 @@ const cardStack = (cards, player) => {
           return current.map((card, i) => {
             zInd += i
             player === 'c' ? offSet -= i*10 : offSet += i*10
-            return <CardContainer position='absolute' zIndex={zInd} left={`${offSet}px`} side='back' card={card} />
+            return <CardContainer key={i} position='absolute' zIndex={zInd} left={`${offSet}px`} side='back' card={card} />
           })
         } else {
           zInd += 1
           player === 'c' ? offSet -= 10 : offSet += 10
-          return <CardContainer position='absolute' zIndex={zInd} left={`${offSet}px`} card={current} />
+          return <CardContainer key={zInd} position='absolute' zIndex={zInd} left={`${offSet}px`} card={current} />
         }
       })}
     </Box>

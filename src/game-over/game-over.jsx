@@ -20,7 +20,7 @@ function GameOver({ winner }) {
         </Heading>
       </Center>
       <Center>
-        <Image src={winner === 'Player' ? elaine : loser} />
+        <Image src={winner === 'Player' ? elaine : loser} alt={winner === 'Player' ? 'Elaine from Seinfeld dancing' : 'Woman making loser sign'} />
       </Center>
     </>
   )
